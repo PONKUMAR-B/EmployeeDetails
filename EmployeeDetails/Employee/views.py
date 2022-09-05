@@ -31,6 +31,7 @@ class EmployeeView(APIView):
 
     def delete(self,request):
         data = request.data
-        emp = Employee.objects.get(id = data['id']).delete()
-        return Response("successfully deleted",emp.data,content_type='application/json')
-      
+        emp = Employee.objects.filter(id = data['id']).update(is_delete=True)
+        return Response("successfully deleted",content_type='application/json')
+
+    
